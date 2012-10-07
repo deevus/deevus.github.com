@@ -24,7 +24,7 @@ title: Simon Hartcher - Programming in Windows et al.
   var disqus_shortname = 'simonhartcher'; // required: replace example with your forum shortname
 
   /* * * DON'T EDIT BELOW THIS LINE * * */
-  (function () {
+  $(function () {
       var s = document.createElement('script'); s.async = true;
       s.type = 'text/javascript';
       s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
