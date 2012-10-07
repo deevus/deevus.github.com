@@ -1,6 +1,5 @@
 ---
 layout: page
-title: Simon Hartcher - Programming in Windows et al.
 ---
 {% include JB/setup %}
 
