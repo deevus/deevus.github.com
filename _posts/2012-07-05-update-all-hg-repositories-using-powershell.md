@@ -21,7 +21,31 @@ categories: []
 
 <h1>Teh Codez</h1>
 
-<p>[gist id=1506832]</p>
+	Cls
+	Write-Host "Searching for repositories to update..."
+	Write-Host
+
+	$dirs = Get-ChildItem | where {$_.PsIsContainer} | where { Get-ChildItem $_ -filter ".hg" } 
+
+	foreach ($dir in $dirs)
+	{
+		Start-Job -Name HgUpdate$dir -ArgumentList @($dir.FullName) -ScriptBlock {
+			pushd $args[0]
+			hg pull --update
+		} | Out-Null
+		"Created job for repository: " + $dir
+	}
+
+	Cls
+	Write-Host "Waiting for jobs to complete..."
+	Wait-Job HgUpdate* | Out-Null
+
+	Cls
+	Receive-Job HgUpdate*
+	Write-Host
+	Write-Host "All jobs completed."
+	Write-Host "Press any key to continue..."
+	$host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown") | Out-Null
 
 <p>There's not a lot going on here:</p>
 
