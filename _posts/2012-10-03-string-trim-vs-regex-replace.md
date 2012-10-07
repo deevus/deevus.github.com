@@ -7,11 +7,11 @@ categories: [string, regex, regex-replace]
 ---
 I encountered this line in some code while I was doing a review:
 
-`userName = Regex.Replace(userName, "[ ]", "");`
+	userName = Regex.Replace(userName, "[ ]", "");
 
 It struck me as odd that the programmer would use this in place of `String.Trim()` to "remove whitespace from either side of a string":
 
-`userName = userName.Trim(); //this is what I would have done`
+	userName = userName.Trim(); //this is what I would have done
 
 The programmer's response was that he didn't know about `String.Trim()` and just used what he knew.
 
@@ -23,16 +23,16 @@ What baffles me the most is that a programmer can be oblivious of string manipul
 
 <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html#trim()">Java</a>:
 
-`String trim() - Returns a copy of the string, with leading and trailing whitespace omitted.`
+	String trim() - Returns a copy of the string, with leading and trailing whitespace omitted.
 
 <a href="http://msdn.microsoft.com/en-us/library/t97s7bs3.aspx">C#</a>:
 
-`Trim() - Removes all leading and trailing white-space characters from the current String object.`
+	Trim() - Removes all leading and trailing white-space characters from the current String object.
 
 <a href="http://docs.python.org/library/stdtypes.html#str.strip">Python</a>:
 
-`str.strip([chars])
-Return a copy of the string with the leading and trailing characters removed. The chars argument is a string specifying the set of characters to be removed. If omitted or None, the chars argument defaults to removing whitespace. The chars argument is not a prefix or suffix; rather, all combinations of its values are stripped`
+	str.strip([chars])
+	Return a copy of the string with the leading and trailing characters removed. The chars argument is a string specifying the set of characters to be removed. If omitted or None, the chars argument defaults to removing whitespace. The chars argument is not a prefix or suffix; rather, all combinations of its values are stripped
 
 I'm sure that I could go on. Surely, there would be a similar method in every language that I could think of. I know that I'm picking on <code>Trim</code> here but the idea is that those key string manipulation methods are staples:
 
