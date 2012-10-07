@@ -29,6 +29,9 @@
 </head>
 <body id="{{ page.section }}">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript">
+  $("code").addClass("prettify");
+</script>
 <div id="site">
   
   <div id="header">
@@ -73,5 +76,6 @@
 <![endif]-->
 
   {% include JB/analytics %}
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js" type="text/javascript"></script>
 </body>
 </html>
