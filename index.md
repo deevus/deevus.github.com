@@ -5,7 +5,7 @@ layout: page
 
 {% for post in site.posts limit:4 %}
   <h2>
-      <a href="/" rel="bookmark" title="Permanent link to ">{{ post.title }}</a>
+      <a href="{{ post.link }}" rel="bookmark" title="Permanent link to ">{{ post.title }}</a>
   </h2>
   <span>{{ post.date | date: '%B' }} {{ post.date | date: '%e' }}, {{ post.date | date: '%Y' }}</span>
   <p>
