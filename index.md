@@ -1,5 +1,6 @@
 ---
 layout: page
+title: Programming in Windows et al.
 ---
 {% include JB/setup %}
 
