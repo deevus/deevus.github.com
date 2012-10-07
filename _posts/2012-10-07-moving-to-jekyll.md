@@ -18,7 +18,7 @@ Recently, I have been getting really slow speeds on [Dreamhost](http://dreamhost
 
 The initial plan was to move over to [Windows Azure Web Sites](https://www.windowsazure.com/en-us/home/scenarios/web-sites/) on a [Pay-As-You-Go](https://www.windowsazure.com/en-us/pricing/calculator/) plan. I had some success migrating it to Azure, but I was having issues getting my domain working the way that I had it. Azure absolutely refused to recognise my www subdomain (it would 404 while the TLD worked fine).
 
-I then discovered that my Wordpress installation had been infected my malware, and given this is the second time in many months that this has occurred (while running the absolute latest version), my frustration lead me to looking at alternative options. 
+I then discovered that my Wordpress installation had been infected by malware, and given this is the second time in many months that this has occurred (while running the absolute latest version), my frustration lead me to looking at alternative options. 
 
 Jekyll
 --
