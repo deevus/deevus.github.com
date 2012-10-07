@@ -10,7 +10,7 @@ pygments: true
 # so be sure to set them if your theme uses them.
 #
 title : Simon Hartcher
-tagline: Windows Programming et al.
+tagline: Programming in Windows et al.
 author :
   name : Simon Hartcher
   email : simon@simonhartcher.com
