@@ -46,7 +46,7 @@ categories: []
 
 <p>To install Package Control we are going to run Python code from the console. Copy the following code and paste it into the Sublime Text console, accessed using <code>Ctrl + `</code> and run it by pressing <code>Enter</code>.</p>
 
-{% render_gist https://gist.github.com/3150080#file_gistfile1.py }
+{% render_gist https://raw.github.com/gist/3150080/9526cdbf61e0d24c9f9058cbbefd1212eb3bde72/gistfile1.py %}
 
 <p>There are <a href="http://wbond.net/sublime_packages/package_control/installation#Manual_Instructions">manual instructions</a> if the console install does not work for you.</p>
 
