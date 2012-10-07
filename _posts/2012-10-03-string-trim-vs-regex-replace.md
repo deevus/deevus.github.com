@@ -15,7 +15,7 @@ It struck me as odd that the programmer would use this in place of `String.Trim(
 
 The programmer's response was that he didn't know about `String.Trim()` and just used what he knew.
 
-![My head is full of F#$%]("http://i.imgur.com/8Kn4F.png")
+![My head is full of F#$%](http://i.imgur.com/8Kn4F.png)
 
 I would argue that <code>String.Trim</code> is much clearer to someone reading your code (especially if you didn't know regex), but in his case it wouldn't be because he had no idea what <code>Trim</code> was. The other side effect is that the regex code in this instance would remove <strong>all the whitespace</strong>, not just leading or trailing.
 
