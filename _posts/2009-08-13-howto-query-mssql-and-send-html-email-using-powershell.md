@@ -1,6 +1,6 @@
 ---
 layout: post
-title: HOWTO\: Query MSSQL And Send HTML Email Using Powershell
+title: HOWTO Query MSSQL And Send HTML Email Using Powershell
 date: 2009-08-13 11:31
 comments: true
 categories: []
