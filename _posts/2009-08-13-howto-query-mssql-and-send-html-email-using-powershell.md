@@ -123,7 +123,7 @@ Before we run the script, make sure you remove or comment out **| Out-File test.
 
 Then all you need to do is run the script from the Powershell console.
 
-<a href="http://i.imgur.com/Oe8ab.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="Powershell console" src="http://i.imgur.com/hlDXb.png" border="0" alt="Powershell console" width="889" height="207" /></a>
+<a href="http://i.imgur.com/Oe8ab.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="Powershell console" src="http://i.imgur.com/hlDXb.png" border="0" alt="Powershell console" /></a>
 
 If all is well, your recipient should receive a nicely formatted email sent using Powershell with data from SQL.
 
