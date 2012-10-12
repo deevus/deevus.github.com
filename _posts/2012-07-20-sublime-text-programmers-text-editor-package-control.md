@@ -32,7 +32,7 @@ categories: []
 
 <p><a href="http://www.sublimetext.com/2">Sublime Text</a> is amazing! You only have to watch the demonstrations on <a href="http://www.sublimetext.com/">their homepage</a> to see why. Unlike all the above editors, <a href="http://www.sublimetext.com/buy">it is not free</a>, but after the 30 day trial I was sold.</p>
 
-<p><a href="http://i.imgur.com/ixGzs.png" target="_new" /><img src="http://i.imgur.com/ixGzsl.png" alt="Sublime Text 2" /></a></p>
+<p><a href="http://i.imgur.com/ixGzs.png" target="_new" ><img src="http://i.imgur.com/ixGzsl.png" alt="Sublime Text 2" /></a></p>
 
 <h2>TextMate Compatibility</h2>
 
