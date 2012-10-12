@@ -5,9 +5,10 @@ date: 2009-08-13 11:31
 comments: true
 categories: []
 ---
+
 Before I start this tutorial I must preface this with a warning: **The amount of coding in this tutorial is so minimal it is almost sexually exciting.** I have found that [Powershell](http://www.microsoft.com/windowsserver2003/technologies/management/powershell/default.mspx) is such a powerful scripting tool that you can accomplish tasks that would take 100's of lines in a lot less. This tutorial is an amalgamation of several different tutorials I found online when I wanted to have a crack at emailing a report to a client. As it turned out it is now run daily as part of our scheduled tasks.
 
-Powershell is what you would call the successor of Command Prompt but more is akin to a *nix command line tool like bash. As it seems that *everything* is going .NET these days it should be no surprise that Powershell also leverages the [.NET Framework](http://en.wikipedia.org/wiki/.NET_Framework). If you have used C# or VB.NET before the kind of objects you will be working with will be quite familiar. I am running Powershell 2.0 on the Windows 7 RTM (which comes preinstalled) but Powershell 1.0 will also work with this tutorial.
+Powershell is what you would call the successor of Command Prompt but more is akin to a \*nix command line tool like bash. As it seems that *everything* is going .NET these days it should be no surprise that Powershell also leverages the [.NET Framework](http://en.wikipedia.org/wiki/.NET_Framework). If you have used C# or VB.NET before the kind of objects you will be working with will be quite familiar. I am running Powershell 2.0 on the Windows 7 RTM (which comes preinstalled) but Powershell 1.0 will also work with this tutorial.
 
 **Getting A Working Connection String**
 
