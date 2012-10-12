@@ -5,17 +5,17 @@ date: 2009-08-13 11:31
 comments: true
 categories: []
 ---
-Before I start this tutorial I must preface this with a warning: <strong>The amount of coding in this tutorial is so minimal it is almost sexually exciting. </strong>I have found that <a href="http://www.microsoft.com/windowsserver2003/technologies/management/powershell/default.mspx">Powershell</a> is such a powerful scripting tool that you can accomplish tasks that would take 100's of lines in a lot less. This tutorial is an amalgamation of several different tutorials I found online when I wanted to have a crack at emailing a report to a client. As it turned out it is now run daily as part of our scheduled tasks.
+Before I start this tutorial I must preface this with a warning: **The amount of coding in this tutorial is so minimal it is almost sexually exciting.** I have found that [Powershell](http://www.microsoft.com/windowsserver2003/technologies/management/powershell/default.mspx) is such a powerful scripting tool that you can accomplish tasks that would take 100's of lines in a lot less. This tutorial is an amalgamation of several different tutorials I found online when I wanted to have a crack at emailing a report to a client. As it turned out it is now run daily as part of our scheduled tasks.
 
-Powershell is what you would call the successor of Command Prompt but more is akin to a *nix command line tool like bash. As it seems that <em>everything</em> is going .NET these days it should be no surprise that Powershell also leverages the <a href="http://en.wikipedia.org/wiki/.NET_Framework">.NET Framework</a>. If you have used C# or VB.NET before the kind of objects you will be working with will be quite familiar. I am running Powershell 2.0 on the Windows 7 RTM (which comes preinstalled) but Powershell 1.0 will also work with this tutorial.
+Powershell is what you would call the successor of Command Prompt but more is akin to a *nix command line tool like bash. As it seems that *everything* is going .NET these days it should be no surprise that Powershell also leverages the [.NET Framework](http://en.wikipedia.org/wiki/.NET_Framework). If you have used C# or VB.NET before the kind of objects you will be working with will be quite familiar. I am running Powershell 2.0 on the Windows 7 RTM (which comes preinstalled) but Powershell 1.0 will also work with this tutorial.
 
-<strong>Getting A Working Connection String</strong>
+**Getting A Working Connection String**
 
 The first thing we want to do is form our SQL query which will be the data that we will email to our client. To do that in Powershell we are going to need a connection string. A handy little tool that I use to grab a connection string is the Data Link Properties file. You can just create a new file somewhere called:
 
 	Test.udl
 
-You will need to be able to <a href="http://www.fileinfo.com/help/windows-show-extensions.html">see all file extensions</a> to create the file. Open the file using Windows Explorer and go to the Provider tab. Once there you need to select `Microsoft OLE DB Provider for SQL Server`.
+You will need to be able to [see all file extensions](http://www.fileinfo.com/help/windows-show-extensions.html) to create the file. Open the file using Windows Explorer and go to the Provider tab. Once there you need to select `Microsoft OLE DB Provider for SQL Server`.
 
 <img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="Data Link Properties - Provider Tab" src="http://i.imgur.com/sa67A.png" border="0" alt="Data Link Properties - Provider Tab" width="381" height="477" />
 
@@ -39,7 +39,7 @@ All we actually need is the text on line 3 excluding the first segment `Provider
 
 	"Password=*******;Persist Security Info=True;User ID=sa;Initial Catalog=AdventureWorks;Data Source=DEEVUS-PC\SQLEXPRESS"
 
-<strong>Querying SQL Using Powershell</strong>
+**Querying SQL Using Powershell**
 
 Now that we have a working connection string, we can begin coding our Powershell script. The first thing we need to do is create our connection object:
 
@@ -52,7 +52,7 @@ Then we create our query string:
 
 	$q = "SELECT TOP 50 * FROM HumanResources.vEmployee ORDER BY LastName"
 
-We also need an Adapter and a DataSet to gather and hold our data. Once you have gathered the data using the <a href="http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqldataadapter.aspx">SqlDataAdapter</a> you put the results into the <a href="http://msdn.microsoft.com/en-us/library/system.data.dataset.aspx">DataSet</a>:
+We also need an Adapter and a DataSet to gather and hold our data. Once you have gathered the data using the [SqlDataAdapter](http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqldataadapter.aspx) you put the results into the [DataSet](http://msdn.microsoft.com/en-us/library/system.data.dataset.aspx):
 
 	#Data Adapter which will gather the data using our query
 	$da = New-Object System.Data.SqlClient.SqlDataAdapter($q, $cn)
@@ -63,21 +63,21 @@ We also need an Adapter and a DataSet to gather and hold our data. Once you have
 	#Close the database connection
 	$cn.Close()
 
-<strong>Creating The HTML Email</strong>
+**Creating The HTML Email**
 
-So now we have the data that we want to email we need to format it into HTML. Powershell has an inbuilt function called <a href="http://www.microsoft.com/technet/scriptcenter/topics/msh/cmdlets/convertto-html.mspx">ConvertTo-HTML</a><strong> </strong>which automagically turns data into HTML! It is really quite simple:
+So now we have the data that we want to email we need to format it into HTML. Powershell has an inbuilt function called [ConvertTo-HTML](http://www.microsoft.com/technet/scriptcenter/topics/msh/cmdlets/convertto-html.mspx) which automagically turns data into HTML! It is really quite simple:
 
 	$emailbody = $ds.Tables[0] |
 	     Select-Object LastName, FirstName, JobTitle, Phone, EmailAddress, AddressLine1, City, PostalCode |
 	     ConvertTo-HTML
 
-<strong><a href="http://technet.microsoft.com/en-us/library/dd315291.aspx">Select-Object</a></strong> will simply grab the members from the DataSet that we need. As you can see in the above snippet we have grabbed some general information about the employees at AdventureWorks. If youâ€™ve gotten to this point and want to see what the outcome might look like, you can add <strong><a href="http://technet.microsoft.com/en-us/library/dd315303.aspx">Out-File</a> test.html</strong> to the end of the last line so that it looks like this:
+**[Select-Object](http://technet.microsoft.com/en-us/library/dd315291.aspx)** will simply grab the members from the DataSet that we need. As you can see in the above snippet we have grabbed some general information about the employees at AdventureWorks. If you've gotten to this point and want to see what the outcome might look like, you can add **[Out-File](http://technet.microsoft.com/en-us/library/dd315303.aspx) test.html** to the end of the last line so that it looks like this:
 
 	ConvertTo-HTML | Out-File test.html
 
 <a href="http://i.imgur.com/M3er4.png"><img style="display: inline; margin-left: 0px; margin-right: 0px; border-width: 0px;" title="Output in browser" src="http://i.imgur.com/HrNhU.png" border="0" alt="Output in browser" width="244" height="196" align="right" /></a>This will save the results to a html file which you can freely view in your preferred browser.
 
-As you can see from your html file (or the screenshot provided) it is not the prettiest markup on the internet. However, there are ways to improve the look and feel of the generated html via the <strong>â€“head</strong> parameter of ConvertTo-HTML. The head parameter will essential pass whatever you give it to the &lt;head&gt; tags of the HTML. The head of a HTML markup can be used to shape the look and feel of the body of the document, so this way we can pass it some information to make it look nicer.
+As you can see from your html file (or the screenshot provided) it is not the prettiest markup on the internet. However, there are ways to improve the look and feel of the generated html via the **head** parameter of ConvertTo-HTML. The head parameter will essential pass whatever you give it to the &lt;head&gt; tags of the HTML. The head of a HTML markup can be used to shape the look and feel of the body of the document, so this way we can pass it some information to make it look nicer.
 
 	#HTML Email Styles
 	$style = "<style type='text/css'>"
@@ -93,21 +93,21 @@ And then the last line will look like this to implement the styles we just creat
 
 <a href="http://i.imgur.com/tJBig.png"><img style="display: block; float: none; margin-left: auto; margin-right: auto; border-width: 0px;" title="Output in browser with styles" src="http://i.imgur.com/6hUyT.png" border="0" alt="Output in browser with styles" width="604" height="484" /></a>
 
-<strong>Sending The Email</strong>
+**Sending The Email**
 
-For the final stage of this tutorial we need to actually send the email. First things first we should create all the variables pertaining to sending an email â€“ From, To and the Subject
+For the final stage of this tutorial we need to actually send the email. First things first we should create all the variables pertaining to sending an email:
 	
 	$emailFrom = "deevus@isp.com.au"
 	$emailTo = "someone@anotherisp.com"
 	$subject = "AdventureWorks - Current Employees"
 
-Now we form the message using the <a href="http://msdn.microsoft.com/en-us/library/system.net.mail.mailmessage.aspx">Net.Mail.MailMessage</a> class.
+Now we form the message using the [Net.Mail.MailMessage](http://msdn.microsoft.com/en-us/library/system.net.mail.mailmessage.aspx) class.
 
 	$message = New-Object Net.Mail.MailMessage($emailFrom, $emailTo, $subject, $emailbody)
 	#This is needed to make sure it interprets the email as HTML
 	$message.IsBodyHTML = $true
 
-And the SMTP server using the <a href="http://msdn.microsoft.com/en-us/library/system.net.mail.smtpclient.aspx">Net.Mail.SmtpClient</a> class.
+And the SMTP server using the [Net.Mail.SmtpClient](http://msdn.microsoft.com/en-us/library/system.net.mail.smtpclient.aspx) class.
 
 	$smtpServer = "smtp.isp.com.au"
 	$smtp = New-Object Net.Mail.SmtpClient($smtpServer)
@@ -116,7 +116,7 @@ Finally, like magic, we send the email!
 
 	$smtp.Send($message)
 
-Before we run the script, make sure you remove or comment out <strong>| Out-File test.html</strong>, otherwise the email will be blank.
+Before we run the script, make sure you remove or comment out **| Out-File test.html**, otherwise the email will be blank.
 
 	ConvertTo-HTML -head $style #| Out-File test.html
 
@@ -126,7 +126,7 @@ Then all you need to do is run the script from the Powershell console.
 
 If all is well, your recipient should receive a nicely formatted email sent using Powershell with data from SQL.
 
-<strong>Great Success!</strong>
+**Great Success!**
 
 Here is the Powershell script in its entirety:
 
@@ -171,4 +171,4 @@ Here is the Powershell script in its entirety:
 	
 	$smtp.Send($message)
 
-<a href="https://dl.dropbox.com/u/3016443/Blog/2009-08-13-howto-query-mssql-and-send-html-email-using-powershell/PowershellTutorialWeb.ps1">Download</a>
+[Download](https://dl.dropbox.com/u/3016443/Blog/2009-08-13-howto-query-mssql-and-send-html-email-using-powershell/PowershellTutorialWeb.ps1)
