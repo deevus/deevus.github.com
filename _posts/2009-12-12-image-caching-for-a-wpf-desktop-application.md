@@ -3,7 +3,6 @@ layout: post
 title: Image Caching for a WPF Desktop Application
 date: 2009-12-12 21:49
 comments: true
-categories: []
 ---
 WPF is a great technology and in my opinion is miles better than WinForms. Unfortunately, like any technology there are always going to be shortfalls that you have to work around yourself. My company is presently developing a WPF Desktop Application that fetches images from a web server. One of the shortfalls of WPF is that client side caching is not implemented, but you can do it yourself using custom bindings.
 
@@ -13,17 +12,17 @@ Consider the following code where the binding <em>ImageAddress </em>points to an
 
 Each time the Window in which this code resides is loaded the image will be fetched from the web server.
 
-<span style="font-size: medium;"><strong>Every time you say?!</strong> <em>Every time…¦</em> </span>
+**Every time you say?!** *Every time…*
 
-Considering the application we are working on will be displaying a lot of images, this is just not acceptable. I kept thinking that there has to be a way to turn on caching, but after Googling (the good kind) until my hands were sore I discovered there was no switch I could just turn on. I <a href="http://stackoverflow.com/questions/1878060/how-do-i-cache-images-on-the-client-for-a-wpf-application">asked a question</a> on StackOverflow and it was suggested that I just save the images to a local directory. Unfortunately that was all he said.
+Considering the application we are working on will be displaying a lot of images, this is just not acceptable. I kept thinking that there has to be a way to turn on caching, but after Googling (the good kind) until my hands were sore I discovered there was no switch I could just turn on. I [asked a question](http://stackoverflow.com/questions/1878060/how-do-i-cache-images-on-the-client-for-a-wpf-application) on StackOverflow and it was suggested that I just save the images to a local directory. Unfortunately that was all he said.
 
-After some searching I discovered that using the <a href="http://msdn.microsoft.com/en-us/library/system.windows.data.binding.converter.aspx">Binding.Converter</a> attribute I could pass the value of the Source attribute to a Converter and then back again. To create a converter you create a class that implements <a href="http://msdn.microsoft.com/en-us/library/system.windows.data.ivalueconverter.aspx">IValueConverter</a>. IValueConverter requires that you implement two methods:
+After some searching I discovered that using the [Binding.Converter](http://msdn.microsoft.com/en-us/library/system.windows.data.binding.converter.aspx) attribute I could pass the value of the Source attribute to a Converter and then back again. To create a converter you create a class that implements [IValueConverter](http://msdn.microsoft.com/en-us/library/system.windows.data.ivalueconverter.aspx) requires that you implement two methods:
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 
-<strong>Convert </strong>will be used to convert the data you pass to it into the desired format to display on the form. <strong>ConvertBack</strong> is the reverse, where any changes the user makes to the data displayed on the form may need to be converted back to a format that you require for processing (eg. to send to a database). Here is an example as provided on msdn:
-<blockquote>The following example shows the implementation of a date converter that converts the date value passed in so that it only shows the year, the month, and the day. When implementing the IValueConverter interface, it is a good practice to decorate the implementation with a <a href="http://msdn.microsoft.com/en-us/library/system.windows.data.valueconversionattribute.aspx">ValueConversionAttribute</a> attribute to indicate to development tools the data types involved in the conversion, as in the following example:</blockquote>
+**Convert** will be used to convert the data you pass to it into the desired format to display on the form. **ConvertBack** is the reverse, where any changes the user makes to the data displayed on the form may need to be converted back to a format that you require for processing (eg. to send to a database). Here is an example as provided on msdn:
+ > The following example shows the implementation of a date converter that converts the date value passed in so that it only shows the year, the month, and the day. When implementing the IValueConverter interface, it is a good practice to decorate the implementation with a [ValueConversionAttribute](http://msdn.microsoft.com/en-us/library/system.windows.data.valueconversionattribute.aspx) to indicate to development tools the data types involved in the conversion, as in the following example:
 
 	[ValueConversion(typeof(DateTime), typeof(String))]
 	public class DateConverter : IValueConverter
@@ -46,9 +45,9 @@ After some searching I discovered that using the <a href="http://msdn.microsoft.
 	  }
 	}
 
-As you can see, in Convert <em>value </em>is cast to a DateTime object and then returned as a string using <em>ToShortDateString()</em>. Then in ConvertBack (which will be passed a string from the form) the string is parsed into a date using <em>DateTime.TryParse() </em>and then returned if it completes successfully.
+As you can see, in Convert *value* is cast to a DateTime object and then returned as a string using *ToShortDateString()*. Then in ConvertBack (which will be passed a string from the form) the string is parsed into a date using *DateTime.TryParse()* and then returned if it completes successfully.
 
-So, onto the specific problem of caching an image on the local machine. I start with an empty class called <em>ImageCacher</em> implementing stub methods from IValueConverter. As we are grabbing the web address from a database, we are not interested in sending the local address back to the database, so we can simply complete ConvertBack returning a null value.
+So, onto the specific problem of caching an image on the local machine. I start with an empty class called *ImageCacher* implementing stub methods from IValueConverter. As we are grabbing the web address from a database, we are not interested in sending the local address back to the database, so we can simply complete ConvertBack returning a null value.
 
 	//Not needed – return null
 	public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -75,8 +74,8 @@ First thing in Convert is to check to see if our directory already exists, and c
 		//Check to see if the directory in AppData has been created
 		if (!Directory.Exists(AppDataDirectory))
 		{
-		//Create it
-		Directory.CreateDirectory(AppDataDirectory);
+			//Create it
+			Directory.CreateDirectory(AppDataDirectory);
 		}
 
 Since we are working with a web address, we will create a Uri from our string. Once we have that, we can use the Segments property of the Uri class to grab the name of the image in the web address, and we'll use that to define the local path where the image will be stored (or is already stored, if it has been downloaded before).
@@ -129,4 +128,4 @@ Then we add the Converter attribute to the Binding of our original Image control
 
 	<Image Source=”{Binding ImageAddress, Converter={StaticResource imageCacher}}“/>
 
-And its as simple as that. Each time an address is passed to the control, it will run it through the converter first. It will check to see if the image exists locally, and download it if it hasn’t been. The solution could be more polished but this is working for us <strong>right now</strong>.
+And its as simple as that. Each time an address is passed to the control, it will run it through the converter first. It will check to see if the image exists locally, and download it if it hasn’t been. The solution could be more polished but this is working for us **right now**.
