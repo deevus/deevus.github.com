@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Indie Game: The Movie
+title: "Indie Game: The Movie"
 date: 2012-06-14 17:28
 comments: true
 categories: []

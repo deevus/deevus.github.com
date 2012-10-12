@@ -1,7 +1,8 @@
 ---
 layout: page
-title : About
+title : About Simon
 header : About Simon
+permalink: /About/
 ---
 {% include JB/setup %}
 
