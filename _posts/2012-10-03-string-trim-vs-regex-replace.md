@@ -5,6 +5,17 @@ date: 2012-10-03 17:40
 comments: true
 categories: [string, regex, regex-replace]
 ---
+
+>DISCLAIMER
+
+>It has come to my attention that the programmer in this article has read this and was taken aback by my comments. This is not an attack on the programmer in question, although I can see how that impression was given. 
+
+>The point I was trying to make is that programmers are being taught the wrong things. They finish their degrees and have a breadth of knowledge that some of which I don't have, but due to the education system miss out on the staples of being a real working programmer.
+
+>"University students only learn how to build a space ship"
+
+-------------------
+
 I encountered this line in some code while I was doing a review:
 
 	userName = Regex.Replace(userName, "[ ]", "");
