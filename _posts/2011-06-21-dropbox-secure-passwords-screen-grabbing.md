@@ -17,23 +17,23 @@ Imagine never having to remember more than 1 Password, and <strong>all </strong>
 If you are looking for a free alternative you can always try <a href="http://keepass.info/">KeePass</a>, but do try out 1Password as it comes with a 30 day trial.
 <h2>Sharing is Caring</h2>
 If you've ever wanted to share a screengrab with a buddy or co-worker you probably had to go through some grueling manual process:
-<ol>
-	<li>Press PrintScn (or Alt + PrintScn) to take the shot</li>
-	<li>Paste into your <a href="http://www.paint.net/">image editor of choice</a></li>
-	<li>Save to a suitable format</li>
-	<li>Upload to <a href="http://imgur.com/">some</a> <a href="http://imageshack.us/">image</a> <a href="http://photobucket.com/">host</a></li>
-	<li>Find the direct link</li>
-	<li>Send to your buddy/co-worker</li>
-</ol>
+
+	- Press PrintScn (or Alt + PrintScn) to take the shot
+	- Paste into your <a href="http://www.paint.net/">image editor of choice</a>
+	- Save to a suitable format
+	- Upload to <a href="http://imgur.com/">some</a> <a href="http://imageshack.us/">image</a> <a href="http://photobucket.com/">host</a>
+	- Find the direct link
+	- Send to your buddy/co-worker
+  
 I don't know about you but I wanted a better way!
 
 Well, <a href="http://wiki.dropbox.com/DropboxAddons/DropboxScreenGrabber">Dropbox Screen Grabber</a> is the answer. I'm not sure who Tomaž Muraus is (either a Dropbox developer or community member), but this thing is cool! It doesn't have an installer, just a binary zip with the required files to run. When running, it just sits in your tray unobtrusively, and all you need to do is use the hotkey you set to get it to work.  <img style="display: block; float: none; margin-left: auto; margin-right: auto;" src="http://dl.dropbox.com/u/3016443/screengrab_20110621213416.jpg" alt="" />
 
 As you can see from the image above, you can set two hotkeys:
-<ul>
-	<li>A full screen screenshot</li>
-	<li>A screenshot of the active window</li>
-</ul>
+
+	- A full screen screenshot
+	- A screenshot of the active window
+
 I will probably stray away from the default hotkeys as some programs I use utilise those keys but for now the defaults should suffice. Below is an image of the notification you receive when the grab is successful. There's also an option to copy the link straight to your clipboard, just right click the tray icon to access all the options.
 
 <img style="display: block; float: none; margin-left: auto; margin-right: auto;" src="http://i.imgur.com/XHf6Q.png" alt="" />
